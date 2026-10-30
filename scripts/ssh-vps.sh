@@ -167,8 +167,6 @@ Host ${alias}
   IdentityFile ~/.ssh/vps
   IdentitiesOnly yes
   IdentityAgent /dev/null
-  UseKeychain yes
-  AddKeysToAgent yes
   ServerAliveInterval 30
 $MANAGER_TAG END ${alias}
 EOF
