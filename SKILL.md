@@ -24,7 +24,6 @@ This skill focuses on **统一用 `~/.ssh/vps` 公钥连接**，并把连接信�
 
 ## 目录
 - `scripts/ssh-vps.sh`：增删查改别名、同步 key、直连。
-- `references/fail2ban.md` — fail2ban 安装与面板端口保护要点（见下方 fail2ban 章节）
 
 ## fail2ban（新机第5步，必装）
 新机加固流程第5步：装 fail2ban 防爆破。
@@ -171,13 +170,6 @@ bash skills/ssh_vps_manage/scripts/ssh-vps.sh info <alias>
 - **经验约定**：凡是多行远端命令、里面再套引号/JSON/sed/awk/heredoc 的场景，默认不用 `ssh '...'` 这类单行嵌套写法；优先改用 `ssh-vps-run.sh <alias> <<'REMOTE' ... REMOTE`（示例见 `scripts/ssh-vps-run.sh`）。
 - 在本地 `exec` 里需要先拼复杂脚本时，也优先先写临时脚本或单引号 heredoc，再调用 `ssh-vps-run.sh`，不要把多层引号直接塞进一条超长命令。
 - **远程执行交互式安装脚本**（如 3X-UI、各类一键脚本）：不要把确认参数当位置参数传（`bash <(curl ...) y` 会被当版本号），也不要用 `echo "y" | bash <(curl ...)` 管道喂（管道关闭后后续交互提示读到空值，配置不生效）。正确做法：直接装默认值不传任何输入，装完用 CLI 命令单独配置（用户名、密码、端口等）。
-
-## 目录
-- `references/troubleshooting.md` — 常见问题速查（PubkeyAuthentication 禁用、OOM、批量迁移、macOS 选项炸 Linux、SSH 用户名校验失败）
-- `references/batch-operations.md` — 批量 VPS 扫描与清理模式（execute_code + SSH alias 循环）
-- `references/nat-vps-onboarding.md` — NAT 类 VPS(NAT鸡)接入流程:无公网IP、走映射端口、别名不能含空格、「可用端口范围」用于妙妙屋建 mieru 节点
-- `references/dedirock-quirks.md` — Dedirock 自定义 nginx、端口冲突、certbot 注意事项
-- `references/corrupted-private-keys.md` — 诊断消息平台传输导致的私钥损坏：`= =` 空格、行边界丢字符、公钥/私钥不一致、截断、校验和不匹配、**PyNaCl 种子验证**（格式合法但密码学无效的最终诊断）、损坏诊断决策树
 
 ## 故障排查
 
