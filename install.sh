@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # ssh-vps-skill 一键安装
 # 用法：
-#   bash <(curl -sL https://raw.githubusercontent.com/xiao-vvv/ssh-vps-skill/main/install.sh)
+#   bash <(curl -sL https://raw.githubusercontent.com/liangminmx/vps-skill/main/install.sh)
 # 自定义安装目录：
 #   SSH_VPS_SKILL_DIR=~/my/skills/ssh-vps-skill bash <(curl -sL ...)
 set -euo pipefail
 
-REPO_URL="https://github.com/xiao-vvv/ssh-vps-skill.git"
-TARBALL_URL="https://codeload.github.com/xiao-vvv/ssh-vps-skill/tar.gz/refs/heads/main"
-DEST="${SSH_VPS_SKILL_DIR:-$HOME/.claude/skills/ssh-vps-skill}"
+REPO_URL="https://github.com/liangminmx/vps-skill.git"
+TARBALL_URL="https://codeload.github.com/liangminmx/vps-skill/tar.gz/refs/heads/main"
+DEST="${SSH_VPS_SKILL_DIR:-$HOME/.hermes/skills/ssh-vps-skill}"
 
 info() { printf '\033[32m==>\033[0m %s\n' "$*"; }
 warn() { printf '\033[33m[!]\033[0m %s\n' "$*"; }
@@ -49,5 +49,5 @@ cat <<EOF
        alias ssh-vps='$DEST/scripts/ssh-vps.sh'
        ssh-vps add myvps 1.2.3.4 --user root --port 22 --password '密码'
 
-详见 README：https://github.com/xiao-vvv/ssh-vps-skill
+详见 README：https://github.com/liangminmx/vps-skill
 EOF

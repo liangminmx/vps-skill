@@ -1,13 +1,13 @@
 <p align="center"><b>简体中文</b> · <a href="README.en.md">English</a></p>
 
-<h1 align="center">ssh-vps-skill</h1>
+<h1 align="center">vps-skill</h1>
 
-<p align="center">一个给 <b>AI agent</b>（Claude Code / openclaw / Codex 等）用的 VPS SSH 管理技能</p>
+<p align="center">一个给 <b>AI agent</b>（Hermes / Claude Code / Codex / OpenCode 等）用的 VPS SSH 管理技能</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT">
   <img src="https://img.shields.io/badge/shell-bash-121011?logo=gnu-bash&logoColor=white" alt="bash">
-  <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20openclaw%20%C2%B7%20Codex-8A2BE2" alt="works with Claude Code / openclaw / Codex">
+  <img src="https://img.shields.io/badge/works%20with-Hermes%20%C2%B7%20Claude%20Code%20%C2%B7%20Codex-8A2BE2" alt="works with Hermes / Claude Code / Codex">
 </p>
 
 > 你只要对 AI 轻轻说一句「帮我把这台新鸡加进来，再把密码登录关掉～」，剩下的它就替你稳稳搞定啦。
@@ -48,36 +48,41 @@
 ### 一键安装（推荐，最省事～）
 
 ```bash
-bash <(curl -sL https://raw.githubusercontent.com/xiao-vvv/ssh-vps-skill/main/install.sh)
+bash <(curl -sL https://raw.githubusercontent.com/liangminmx/vps-skill/main/install.sh)
 ```
 
-默认会装到 `~/.claude/skills/ssh-vps-skill`（Claude Code 自己就能认出来）。想换个地方也行：
+默认会装到 `~/.hermes/skills/ssh-vps-skill`（或 `~/.claude/skills/ssh-vps-skill`）。想换个地方也行：
 
 ```bash
-SSH_VPS_SKILL_DIR=~/你的/skills/ssh-vps-skill bash <(curl -sL https://raw.githubusercontent.com/xiao-vvv/ssh-vps-skill/main/install.sh)
+SSH_VPS_SKILL_DIR=~/你的/skills/ssh-vps-skill bash <(curl -sL https://raw.githubusercontent.com/liangminmx/vps-skill/main/install.sh)
 ```
 
 之后再跑同一条命令，它会自动 `git pull` 帮你更新～
 
-### 手动安装（Claude Code）
+### 手动安装（Hermes / Claude Code）
 
 把整个目录放进你的 skills 目录就好：
 
 ```bash
-git clone https://github.com/xiao-vvv/ssh-vps-skill.git ~/.claude/skills/ssh-vps-skill
+# Hermes Agent:
+git clone https://github.com/liangminmx/vps-skill.git ~/.hermes/skills/ssh-vps-skill
+chmod +x ~/.hermes/skills/ssh-vps-skill/scripts/*.sh
+
+# Claude Code:
+git clone https://github.com/liangminmx/vps-skill.git ~/.claude/skills/ssh-vps-skill
 chmod +x ~/.claude/skills/ssh-vps-skill/scripts/*.sh
 ```
 
-### 其它能跑 shell 的 AI agent（openclaw / Codex 等）
+### 其它能跑 shell 的 AI agent（Codex / OpenCode 等）
 
 只要这个 agent 能读文件、能执行命令就行：把仓库放到它够得着的地方，让它读一下 `SKILL.md` 了解命令约定，然后调用 `scripts/ssh-vps.sh` 就可以啦。
 
 ### 想纯手动用（不配 AI 也没问题）
 
 ```bash
-git clone https://github.com/xiao-vvv/ssh-vps-skill.git ~/ssh-vps-skill
-chmod +x ~/ssh-vps-skill/scripts/*.sh
-alias ssh-vps='~/ssh-vps-skill/scripts/ssh-vps.sh'   # 可以写进 ~/.zshrc / ~/.bashrc
+git clone https://github.com/liangminmx/vps-skill.git ~/vps-skill
+chmod +x ~/vps-skill/scripts/*.sh
+alias ssh-vps='~/vps-skill/scripts/ssh-vps.sh'   # 可以写进 ~/.zshrc / ~/.bashrc
 ```
 
 ---
@@ -178,4 +183,4 @@ ssh-vps port myvps
 
 ## License
 
-MIT © xiaov
+MIT © liangminmx

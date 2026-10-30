@@ -216,11 +216,11 @@ ssh user@host "sed -i 's/PubkeyAuthentication no/PubkeyAuthentication yes/' /etc
 流程：
 1. 保存私钥到 `/tmp/<alias>_key`，`chmod 600`
 2. 验证：`ssh-keygen -y -f /tmp/<alias>_key`
-   - 报 `error in libcrypto` → 格式损坏，参考 `references/corrupted-private-keys.md`
-   - 报 `incorrect passphrase`（但 cipher=none）→ 校验和损坏，同上
+   - 报 `error in libcrypto` → 格式损坏，请检查私钥换行及 base64 完整性
+   - 报 `incorrect passphrase`（但 cipher=none）→ 校验和损坏，请重新复制或重新导出
    - 成功提取公钥 → **仍需测试实际 SSH 连接**（格式合法不代表种子未损坏）
-3. SSH 测试：`ssh -o StrictHostKeyChecking=accept-new -i /tmp/<alias>_key root@<host> "echo OK"`
-   - `Permission denied` → 种子可能损坏，运行 PyNaCl 种子验证脚本（见 references）
+2. SSH 测试：`ssh -o StrictHostKeyChecking=accept-new -i /tmp/<alias>_key root@<host> "echo OK"`
+   - `Permission denied` → 私钥不匹配或公钥未录入远端
    - 成功 → 继续
 4. 在 SSH 会话中下发 vps 公钥：
    ```bash
@@ -242,6 +242,6 @@ ssh user@host "sed -i 's/PubkeyAuthentication no/PubkeyAuthentication yes/' /etc
 
 **绕过方法**：直接 clone 到 skill 目录：
 ```bash
-git clone --depth 1 https://github.com/xiao-vvv/ssh-vps-skill.git ~/.hermes/skills/ssh-vps-skill
+git clone --depth 1 https://github.com/liangminmx/vps-skill.git ~/.hermes/skills/ssh-vps-skill
 ```
 Hermes 会自动扫描 `~/.hermes/skills/` 并加载。用 `hermes skills list | grep ssh` 确认。

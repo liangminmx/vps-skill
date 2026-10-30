@@ -1,13 +1,13 @@
 <p align="center"><a href="README.md">简体中文</a> · <b>English</b></p>
 
-<h1 align="center">ssh-vps-skill</h1>
+<h1 align="center">vps-skill</h1>
 
-<p align="center">An SSH-based VPS management skill for <b>AI agents</b> (Claude Code / openclaw / Codex, etc.)</p>
+<p align="center">An SSH-based VPS management skill for <b>AI agents</b> (Hermes / Claude Code / Codex / OpenCode, etc.)</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT">
   <img src="https://img.shields.io/badge/shell-bash-121011?logo=gnu-bash&logoColor=white" alt="bash">
-  <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20openclaw%20%C2%B7%20Codex-8A2BE2" alt="works with Claude Code / openclaw / Codex">
+  <img src="https://img.shields.io/badge/works%20with-Hermes%20%C2%B7%20Claude%20Code%20%C2%B7%20Codex-8A2BE2" alt="works with Hermes / Claude Code / Codex">
 </p>
 
 > Just gently tell your AI "add this new box for me and turn off password login~" — it'll take care of the rest, safely.
@@ -48,36 +48,41 @@ Just say what you want — the AI connects through this skill, runs the commands
 ### One-liner (recommended, easiest~)
 
 ```bash
-bash <(curl -sL https://raw.githubusercontent.com/xiao-vvv/ssh-vps-skill/main/install.sh)
+bash <(curl -sL https://raw.githubusercontent.com/liangminmx/vps-skill/main/install.sh)
 ```
 
-Installs to `~/.claude/skills/ssh-vps-skill` by default (Claude Code picks it up on its own). Want it somewhere else?
+Installs to `~/.hermes/skills/ssh-vps-skill` (or `~/.claude/skills/ssh-vps-skill`). Want it somewhere else?
 
 ```bash
-SSH_VPS_SKILL_DIR=~/your/skills/ssh-vps-skill bash <(curl -sL https://raw.githubusercontent.com/xiao-vvv/ssh-vps-skill/main/install.sh)
+SSH_VPS_SKILL_DIR=~/your/skills/ssh-vps-skill bash <(curl -sL https://raw.githubusercontent.com/liangminmx/vps-skill/main/install.sh)
 ```
 
 Run the same command again later and it updates in place via `git pull`~
 
-### Manual install (Claude Code)
+### Manual install (Hermes / Claude Code)
 
 Just drop the whole directory into your skills folder:
 
 ```bash
-git clone https://github.com/xiao-vvv/ssh-vps-skill.git ~/.claude/skills/ssh-vps-skill
+# Hermes Agent:
+git clone https://github.com/liangminmx/vps-skill.git ~/.hermes/skills/ssh-vps-skill
+chmod +x ~/.hermes/skills/ssh-vps-skill/scripts/*.sh
+
+# Claude Code:
+git clone https://github.com/liangminmx/vps-skill.git ~/.claude/skills/ssh-vps-skill
 chmod +x ~/.claude/skills/ssh-vps-skill/scripts/*.sh
 ```
 
-### Other shell-capable AI agents (openclaw / Codex, etc.)
+### Other shell-capable AI agents (Codex / OpenCode, etc.)
 
 As long as the agent can read files and run commands: put the repo somewhere it can reach, let it read `SKILL.md` for the command conventions, then have it call `scripts/ssh-vps.sh`~
 
 ### Prefer it fully by hand (no AI needed)
 
 ```bash
-git clone https://github.com/xiao-vvv/ssh-vps-skill.git ~/ssh-vps-skill
-chmod +x ~/ssh-vps-skill/scripts/*.sh
-alias ssh-vps='~/ssh-vps-skill/scripts/ssh-vps.sh'   # add to ~/.zshrc / ~/.bashrc
+git clone https://github.com/liangminmx/vps-skill.git ~/vps-skill
+chmod +x ~/vps-skill/scripts/*.sh
+alias ssh-vps='~/vps-skill/scripts/ssh-vps.sh'   # add to ~/.zshrc / ~/.bashrc
 ```
 
 ---
@@ -178,4 +183,4 @@ ssh-vps port myvps
 
 ## License
 
-MIT © xiaov
+MIT © liangminmx
